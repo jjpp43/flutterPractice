@@ -22,6 +22,11 @@ class _LearnFlutterPageState extends State<LearnFlutterPage> {
           icon: Icon(Icons.arrow_back_ios),
         ),
       ),
+      body: Column(
+        children: [
+          Image.asset('images/sky.png'),
+        ],
+      ),
     );
   }
 }
