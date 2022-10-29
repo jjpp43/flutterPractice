@@ -25,6 +25,25 @@ class _LearnFlutterPageState extends State<LearnFlutterPage> {
       body: Column(
         children: [
           Image.asset('images/sky.png'),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(
+            color: Colors.black,
+          ),
+          Container(
+            margin: const EdgeInsets.all(10.0), //Give margin to the container
+            color: Colors.black54,
+            width: double.infinity, //화면 넓이 꽉 채우게
+            child: const Center(  //Center the text
+              child: Text(
+                '이건 참외입니다.',
+                style: TextStyle(
+                  color: Colors.amberAccent,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
