@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:helloworld/home_page.dart';
+import 'package:helloworld/profile_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,21 +31,10 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.amber),
-        home: RootPage());
-    /*
-            Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
-    ); */
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.amber),
+      home: RootPage(),
+    );
   }
 }
 
@@ -57,11 +47,17 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
+  List<Widget> pages = const [
+    HomePage(),
+    ProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('참외마켓')),
-      body: const HomePage(),
+      appBar: AppBar(
+        title: Text('참외마켓'),
+      ),
+      body: pages[currentPage],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           debugPrint('Floating action button');
@@ -71,7 +67,7 @@ class _RootPageState extends State<RootPage> {
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
         onDestinationSelected: (int index) {
           setState(() {
