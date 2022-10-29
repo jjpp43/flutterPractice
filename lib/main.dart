@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Practice - jjpp43'),
     );
   }
 }
@@ -26,7 +28,12 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.amber),
+        home: RootPage());
+    /*
+            Scaffold(
       appBar: AppBar(
         // The title text which will be shown on the action bar
         title: Text(title),
@@ -35,6 +42,41 @@ class MyHomePage extends StatelessWidget {
         child: Text(
           'Hello, World!',
         ),
+      ),
+    ); */
+  }
+}
+
+class RootPage extends StatefulWidget {
+  const RootPage({Key? key}) : super(key: key);
+
+  @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  int currentPage = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('참외마켓')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          debugPrint('Floating action button');
+        },
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Home'),
+        ],
+        onDestinationSelected: (int index){
+          setState(() {
+            currentPage = index;
+          });
+        },
+        selectedIndex: currentPage,
       ),
     );
   }
